@@ -5,11 +5,24 @@ import Counter from "./components/Counter";
 import Say from "./components/Sey";
 import EventPractice from "./components/EventPractice";
 import IterationSample from "./components/IterationSample";
+import Counter2 from "./components/Counter2";
+import Info from "./components/Info";
+import Parent from "./components/Parent";
+import Counter3 from "./components/Counter3";
+import Info2 from "./components/Info2";
+import Average from "./components/Average";
 
 function App() {
   const name1 = "리액트";
   return (
     <>
+      <Average />
+      <Info2 />
+      <Counter3 />
+      <Parent />
+      <Info />
+      <Counter2 />
+      <hr />
       <IterationSample />
       <hr />
       <EventPractice />
