@@ -11,11 +11,18 @@ import Parent from "./components/Parent";
 import Counter3 from "./components/Counter3";
 import Info2 from "./components/Info2";
 import Average from "./components/Average";
+import InputFile from "./components/InputFile";
+import StyledComponent from "./components/StyledComponent";
+import Flex from "./components/Flex";
 
 function App() {
   const name1 = "리액트";
   return (
     <>
+      <Flex />
+      <StyledComponent />
+      <InputFile />
+      <hr />
       <Average />
       <Info2 />
       <Counter3 />
