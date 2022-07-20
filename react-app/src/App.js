@@ -14,11 +14,14 @@ import Average from "./components/Average";
 import InputFile from "./components/InputFile";
 import StyledComponent from "./components/StyledComponent";
 import Flex from "./components/Flex";
+import Todo from "./components/Todo";
 
 function App() {
   const name1 = "리액트";
   return (
     <>
+      <Todo />
+      <hr />
       <Flex />
       <StyledComponent />
       <InputFile />
