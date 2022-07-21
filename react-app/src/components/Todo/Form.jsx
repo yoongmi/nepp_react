@@ -1,35 +1,33 @@
 import styled from "styled-components";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const Form = ({ onAdd }) => {
   //입력관리
 
-  const input = useRef(null);
   const [inputText, setInputText] = useState("");
 
   const handleAdd = () => {
     onAdd(inputText);
     setInputText("");
-    input.current.focus();
   };
 
-  const enterClick = (e) => {
-    if (e.key === "Enter") {
-      handleAdd();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <InputWrapper>
-      <Input
-        onChange={(e) => setInputText(e.target.value)}
-        value={inputText}
-        ref={input}
-        onKeyUp={enterClick}
-        placeholder="Enter your todolist"
-      />
-      <BtnSubmit onClick={handleAdd}>+</BtnSubmit>
-    </InputWrapper>
+    <form onSubmit={handleSubmit}>
+      <InputWrapper>
+        <Input
+          name="query"
+          onChange={(e) => setInputText(e.target.value)}
+          value={inputText}
+          placeholder="Enter your todolist"
+          required
+        />
+        <BtnSubmit onClick={handleAdd}>+</BtnSubmit>
+      </InputWrapper>
+    </form>
   );
 };
 

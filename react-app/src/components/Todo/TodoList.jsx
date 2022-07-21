@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const TodoList = ({ data, onDelete, onChecked }) => {
   //리스트 출력담당
@@ -6,7 +6,7 @@ const TodoList = ({ data, onDelete, onChecked }) => {
   return (
     <List>
       {data.map(({ id, content, checked }) => (
-        <Item key={id}>
+        <Item key={id} checked={checked}>
           <label>
             <input
               type="checkbox"
@@ -29,6 +29,9 @@ const List = styled.ul`
   min-height: 200px;
   background-color: #fff;
 `;
+
+const Content = styled.span``;
+
 const Item = styled.li`
   height: 50px;
   display: flex;
@@ -38,8 +41,22 @@ const Item = styled.li`
   & + & {
     border-top: 1px solid #ddd;
   }
+
+  ${({ checked }) =>
+    checked &&
+    css`
+      background: #fff5cf;
+      ${Content} {
+        text-decoration: line-through;
+      }
+    `};
+
+  /* background: ${(props) => props.checked && "#fff5cf"};
+  ${Content} {
+    text-decoration: ${(props) => props.checked && "line-through"};
+  } */
 `;
-const Content = styled.span``;
+
 const BtnDelete = styled.button``;
 
 export default TodoList;
