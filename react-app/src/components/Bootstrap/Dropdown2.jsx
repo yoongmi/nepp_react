@@ -2,7 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 import useDropdown from "../../hooks/useDropdown";
 
-const Dropdown = () => {
+const Dropdown2 = () => {
   const wrapperEl = useRef(null);
 
   const [buttonOn, setButtonOn] = useDropdown(wrapperEl);
@@ -54,4 +54,4 @@ const Item = styled.div`
   }
 `;
 
-export default Dropdown;
+export default Dropdown2;
