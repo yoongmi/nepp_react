@@ -7,25 +7,46 @@ import Dropdown2 from "./Dropdown2";
 import Carousel from "./Carousel";
 import images from "../datas/images";
 import ModalName from "./Modal/ModalName";
+import Modal from "./Modal/index";
 
 const Bootstrap = () => {
   const [show, setShow] = useState(true);
-  const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("홍길동");
+  const [nickname, setNickName] = useState("홍길동");
   return (
     <Layout>
       <div>
-        {name}
-        <button onClick={() => setModalShow(true)}>이름 바꾸기</button>
-      </div>
-      {modalShow && (
-        <ModalName
-          name={name}
-          setName={setName}
-          onClose={() => setModalShow(false)}
-          onChange={(val) => setName(val)}
+        {nickname}
+        <Modal
+          activator={(onOpen) => (
+            <button onClick={onOpen}>닉네임 바꾸기</button>
+          )}
+          content={(onClose) => (
+            <ModalName
+              name={name}
+              setName={setName}
+              onClose={onClose}
+              onChange={(val) => setNickName(val)}
+            />
+          )}
         />
-      )}
+      </div>
+
+      <div>
+        {name}
+        <Modal
+          activator={(onOpen) => <button onClick={onOpen}>이름바꾸기</button>}
+          content={(onClose) => (
+            <ModalName
+              name={name}
+              setName={setName}
+              onClose={onClose}
+              onChange={(val) => setName(val)}
+            />
+          )}
+        />
+      </div>
+
       <Carousel data={images} type="fade-in" />
       <hr />
       <Carousel data={images} type="slide" />
