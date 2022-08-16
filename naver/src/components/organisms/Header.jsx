@@ -49,12 +49,12 @@ const BtnLink = styled.button`
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px 15px;
-  & + & {
-    margin-left: 10px;
-  }
 `;
 
 const Link = styled(NavLink)`
+  & + & {
+    margin-left: 10px;
+  }
   &.active {
     ${BtnLink} {
       background: #000;
