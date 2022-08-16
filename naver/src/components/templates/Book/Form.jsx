@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Form = ({ data, onChange }) => {
+const Form = ({ onChange }) => {
   const [text, setText] = useState("");
 
   const onSubmit = (e) => {
@@ -15,7 +15,7 @@ const Form = ({ data, onChange }) => {
 
   return (
     <Container onSubmit={onSubmit}>
-      <Input onChange={inputHandle} value={data.text} />
+      <Input onChange={inputHandle} value={text} />
       <SubmitBtn>검색</SubmitBtn>
     </Container>
   );
