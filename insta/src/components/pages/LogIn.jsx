@@ -11,16 +11,52 @@ import {
   FBLogin,
   PasswordReset,
 } from "../atoms/login";
+import authApis from "../../apis/auth";
+import { useState } from "react";
+import instance from "../../apis";
 
 const LogIn = () => {
+  const [form, setForm] = useState({
+    userName: "",
+    password: "",
+  });
+
+  const { userName, password } = form;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const changeForm = { ...form, [name]: value };
+    setForm(changeForm);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { success, message, token } = await authApis.LogIn(form);
+    if (!success) return alert(message);
+
+    instance.defaults.headers.common["Authorization"] = "Bearer" + token;
+  };
   return (
     <Layout>
       <Main>
         <Box>
           <ImgLogo src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" />
-          <Form>
-            <Input placeholder="전화번호,사용자,이름 또는 이메일" />
-            <Input placeholder="비밀번호" type="password" />
+          <Form onSubmit={handleSubmit}>
+            <Input
+              onChange={handleChange}
+              name="userName"
+              value={userName}
+              placeholder="전화번호,사용자,이름 또는 이메일"
+              required
+            />
+            <Input
+              onChange={handleChange}
+              name="password"
+              placeholder="비밀번호"
+              type="password"
+              value={password}
+              required
+            />
             <BtnSubmit>로그인</BtnSubmit>
           </Form>
           <FBLogin>Facebook으로 로그인</FBLogin>

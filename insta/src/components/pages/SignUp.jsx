@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Layout,
   Main,
@@ -14,13 +14,15 @@ import { useState } from "react";
 import authApis from "../../apis/auth";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    user_name: "",
+    userName: "",
     password: "",
+    passwordConfirm: "",
     name: "",
   });
 
-  const { user_name, password, name } = form;
+  const { userName, password, name, passwordConfirm } = form;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,9 +30,18 @@ const SignUp = () => {
     setForm(changeForm);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    authApis.login(form);
+
+    if (userName.length < 4) return alert("아이디를 4글자 이상 입력해 주세요");
+
+    if (password !== passwordConfirm) return alert("비밀번호를 확인해주세요");
+
+    const { success, message } = await authApis.signUp(form);
+    if (!success) return alert(message);
+
+    alert("회원가입 성공");
+    navigate("/log-in");
   };
 
   return (
@@ -42,8 +53,9 @@ const SignUp = () => {
             <Input
               onChange={handleChange}
               placeholder="사용자 이름"
-              name="user_name"
-              value={user_name}
+              name="userName"
+              value={userName}
+              required
             />
             <Input
               onChange={handleChange}
@@ -51,12 +63,22 @@ const SignUp = () => {
               type="password"
               name="password"
               value={password}
+              required
+            />
+            <Input
+              onChange={handleChange}
+              placeholder="비밀번호 확인"
+              type="password"
+              name="passwordConfirm"
+              value={passwordConfirm}
+              required
             />
             <Input
               onChange={handleChange}
               placeholder="성명"
               name="name"
               value={name}
+              required
             />
             <BtnSubmit>가입</BtnSubmit>
           </Form>
