@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const { token } = localStorage;
     if (localStorage.token) {
-      instance.defaults.headers.common["Authorization"] = "Bearer" + token;
+      instance.defaults.headers.common["Authorization"] = "Bearer " + token;
       setIsLogin(true);
     }
     setIsChecked(true);

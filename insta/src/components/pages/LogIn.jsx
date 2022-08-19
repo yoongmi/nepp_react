@@ -39,7 +39,7 @@ const LogIn = () => {
 
     if (!success) return alert(message);
 
-    instance.defaults.headers.common["Authorization"] = "Bearer" + token;
+    instance.defaults.headers.common["Authorization"] = "Bearer " + token;
     localStorage.token = token;
     setIsLogin(true);
     navigate("/");
