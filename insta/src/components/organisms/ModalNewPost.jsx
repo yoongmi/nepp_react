@@ -63,7 +63,11 @@ const ModalNewPost = ({ onClose }) => {
               <ImgPreview src={file} />
             ))}
 
-            <Textarea rows="6" onChange={(e) => setContent(e.target.value)} />
+            <Textarea
+              placeholder="문구입력..."
+              rows="6"
+              onChange={(e) => setContent(e.target.value)}
+            />
           </Body>
         </Container>
       </Backdrop>
@@ -93,7 +97,10 @@ const Header = styled.div`
 const BtnSubmit = styled.button`
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 13px;
+  background-color: transparent;
+  border: 0 none;
+  font-size: 16px;
 `;
 const Body = styled.div`
   display: flex;
@@ -104,7 +111,19 @@ const Body = styled.div`
   padding: 20px;
 `;
 const Guide = styled.span``;
-const BtnUpload = styled.button``;
+const BtnUpload = styled.button`
+  padding: 5px 10px;
+  background-color: #0095f6;
+  border: 0 none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 2px;
+  margin-top: 10px;
+  line-height: 1.2;
+  &:active {
+    background-color: #36abf7;
+  }
+`;
 const InputFile = styled.input`
   display: none;
 `;
@@ -115,6 +134,12 @@ const Textarea = styled.textarea`
   width: 100%;
   margin: 20px;
   box-sizing: border-box;
+  background-color: #eee;
+  border: 0 none;
+  resize: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
 `;
 
 export default ModalNewPost;

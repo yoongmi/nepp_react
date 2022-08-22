@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PostApis from "../../../apis/post";
+import PostsImg from "./PostsImg";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -19,13 +20,15 @@ const Posts = () => {
     <List>
       {posts.map(({ id, name, content, images }) => (
         <Item key={id}>
-          <Header>{id}</Header>
-          <Images>
-            {images.map((i) => (
-              <Image key={i} src={i} />
-            ))}
-          </Images>
-          <Body>{content}</Body>
+          <Header>
+            <Profileimg></Profileimg>
+            {name}
+          </Header>
+          <PostsImg data={images} />
+          <Body>
+            <b>{name}</b>
+            {content}
+          </Body>
         </Item>
       ))}
     </List>
@@ -36,6 +39,7 @@ const List = styled.div`
   margin-top: 20px;
 `;
 const Item = styled.article`
+  overflow: hidden;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -51,13 +55,24 @@ const Header = styled.div`
   padding: 0 20px;
   font-size: 16px;
   font-weight: bold;
+  border-bottom: 1px solid #eee;
 `;
-const Images = styled.div``;
-const Image = styled.img`
-  width: 100%;
+const Profileimg = styled.div`
+  dispay: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 50%;
 `;
+
 const Body = styled.div`
   padding: 15px;
+  b {
+    display: inline-block;
+    margin-right: 10px;
+  }
 `;
 
 export default Posts;

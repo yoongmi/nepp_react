@@ -40,6 +40,7 @@ const Header = () => {
 };
 
 const Container = styled.header`
+  z-index: 100;
   height: 60px;
   background: #fff;
   border-bottom: 1px solid #ddd;
